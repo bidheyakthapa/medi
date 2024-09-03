@@ -3,19 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>HealthApp</title>
     <link rel="stylesheet" href="sidebar/styles.css" />
     <link rel="stylesheet" href="component/medicine/medicine.css" />
+    <link rel="stylesheet" href="component/table/table.css" />
   </head>
   <body>
     <div id="sidebar-container"></div>
-
     <main id="main-content"></main>
 
     <script>
-      // script.js
-
-      // Sidebar HTML as a string with an active class for Medicines
       const sidebarHTML = `
 <aside class="sidebar">
     <div class="logo">
@@ -23,22 +20,17 @@
     </div>
     <ul class="nav">
         <li><a href="#" data-page="./component/medicine/medicine.html" class="active">Medicines</a></li>
-        <li><a href="#" data-page="patients.html">Patients</a></li>
-        <li><a href="#" data-page="appointments.html">Appointments</a></li>
-        <li><a href="#" data-page="reports.html">Reports</a></li>
-        <li><a href="#" data-page="settings.html">Settings</a></li>
+        <li><a href="#" data-page="./component/table/table.html">Table</a></li>
     </ul>
 </aside>
 `;
 
-      // Function to load the sidebar
       function loadSidebar() {
         document.getElementById("sidebar-container").innerHTML = sidebarHTML;
         loadContent("./component/medicine/medicine.html"); // Load default content for Medicines
         addSidebarClickListeners(); // Add click listeners to sidebar links
       }
 
-      // Function to load content from the specified HTML file
       function loadContent(page) {
         fetch(page)
           .then((response) => {
@@ -48,12 +40,73 @@
             return response.text();
           })
           .then((data) => {
+            document.getElementById("main-content").innerHTML = ""; // Clear previous content
             document.getElementById("main-content").innerHTML = data;
+
+            // Check if the loaded page is table.html and fetch data
+            if (page === "./component/table/table.html") {
+              fetchMedicines(); // Fetch and display the table
+            } else if (page === "./component/medicine/medicine.html") {
+              fetchMedicinesList(); // Fetch and display medicines
+            }
           })
           .catch((error) => console.error("Error loading content:", error));
       }
 
-      // Function to add click listeners to sidebar links
+      function fetchMedicinesList() {
+        let medicinesData = [];
+
+        // Check localStorage for medicines data
+        if (localStorage.getItem("medicinesData")) {
+          medicinesData = JSON.parse(localStorage.getItem("medicinesData"));
+          insertMedicines("medicines-container", medicinesData);
+          localStorage.removeItem("medicinesData");
+        } else {
+          fetch("./component/medicine/medicines.json")
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              medicinesData = data;
+              localStorage.setItem(
+                "medicinesData",
+                JSON.stringify(medicinesData)
+              );
+              insertMedicines("medicines-container", medicinesData);
+            })
+            .catch((error) => {
+              console.error("Error fetching the JSON file:", error);
+            });
+        }
+      }
+
+      function generateMedicines(medicines) {
+        return medicines
+          .map(
+            (medicine) => `
+                <div class="medi">
+                    <img src="${medicine["Image URL"]}" alt="${medicine.Name}" />
+                    <div class="details">
+                        <p class="mediname">${medicine.Name} <span>${medicine.Dosage}</span></p>
+                        <div class="priceAndButton">
+                            <p class="price">Rs.${medicine["Price (NPR)"]}</p>
+                            <button class="add" id="add">Add</button>
+                        </div>
+                    </div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      function insertMedicines(containerId, medicinesData) {
+        document.getElementById(containerId).innerHTML =
+          generateMedicines(medicinesData);
+      }
+
       function addSidebarClickListeners() {
         const links = document.querySelectorAll(".sidebar .nav a");
         links.forEach((link) => {
@@ -61,19 +114,65 @@
             event.preventDefault(); // Prevent default link behavior
             setActiveLink(link);
             const page = link.getAttribute("data-page");
-            loadContent(page); // Load the corresponding content
+
+            loadContent(page); // Load the content for the clicked link
           });
         });
       }
 
-      // Function to set the active sidebar link
       function setActiveLink(activeLink) {
         const links = document.querySelectorAll(".sidebar .nav a");
-        links.forEach((link) => link.classList.remove("active")); // Remove active class from all links
-        activeLink.classList.add("active"); // Add active class to the clicked link
+        links.forEach((link) => link.classList.remove("active"));
+        activeLink.classList.add("active");
       }
 
-      window.onload = loadSidebar;
+      function fetchMedicines() {
+        fetch("./component/table/table.json") // Ensure the path to table.json is correct
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            insertMedicinesTable(data);
+          })
+          .catch((error) => {
+            console.error("Error fetching the JSON file:", error);
+          });
+      }
+
+      function insertMedicinesTable(medicinesData) {
+        const tableHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Dosage</th>
+                            <th>Due</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${medicinesData
+                          .map(
+                            (medicine) => `
+                                <tr>
+                                    <td>${medicine.Name}</td>
+                                    <td>Rs.${medicine.Price}</td>
+                                    <td>${medicine.Dosage}</td>
+                                    <td>${medicine.Due}</td>
+                                </tr>
+                            `
+                          )
+                          .join("")}
+                    </tbody>
+                </table>
+            `;
+        document.getElementById("main-content").innerHTML += tableHTML; // Append tableHTML to main-content
+      }
+
+      window.onload = loadSidebar; // Load sidebar when the page loads
     </script>
   </body>
 </html>

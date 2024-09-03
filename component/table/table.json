@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "Paracetamol",
+    "Price": 20,
+    "Dosage": "500mg",
+    "Due": "2023-10-15"
+  },
+  {
+    "Name": "Ibuprofen",
+    "Price": 25,
+    "Dosage": "200mg",
+    "Due": "2023-11-01"
+  },
+  {
+    "Name": "Amoxicillin",
+    "Price": 30,
+    "Dosage": "500mg",
+    "Due": "2023-10-20"
+  },
+  {
+    "Name": "Atorvastatin",
+    "Price": 50,
+    "Dosage": "10mg",
+    "Due": "2023-12-10"
+  }
+]

@@ -8,6 +8,9 @@ body {
 }
 
 .sidebar {
+  position: fixed; /* Fix the sidebar in place */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
   width: 250px; /* Adjusted width for a better look */
   background-color: #1565c0;
   color: #fff;
@@ -16,6 +19,7 @@ body {
   padding: 20px;
   height: 100vh; /* Make sidebar full height */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
+  overflow-y: auto; /* Allow scrolling if content overflows */
 }
 
 .sidebar .logo {
@@ -53,11 +57,18 @@ body {
 
 main {
   flex: 1; /* Allow main content to take the remaining space */
+  margin-left: 250px; /* Add margin to the left to avoid overlap with the sidebar */
   padding: 20px; /* Add some padding around the content */
+  height: 100vh; /* Ensure main content takes full height */
+  overflow-y: auto; /* Allow scrolling for the main content */
 }
 
 @media (max-width: 768px) {
   .sidebar {
     width: 200px; /* Adjust width for smaller screens */
+  }
+
+  main {
+    margin-left: 200px; /* Adjust margin for smaller screens */
   }
 }
