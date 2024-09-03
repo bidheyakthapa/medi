@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="sidebar/styles.css" />
+    <link rel="stylesheet" href="component/medicine/medicine.css" />
   </head>
   <body>
     <div id="sidebar-container"></div>
@@ -16,24 +17,24 @@
 
       // Sidebar HTML as a string with an active class for Medicines
       const sidebarHTML = `
-        <aside class="sidebar">
-            <div class="logo">
-                <h2>HealthApp</h2>
-            </div>
-            <ul class="nav">
-                <li><a href="#" data-page="./component/medicine.html" class="active">Medicines</a></li>
-                <li><a href="#" data-page="patients.html">Patients</a></li>
-                <li><a href="#" data-page="appointments.html">Appointments</a></li>
-                <li><a href="#" data-page="reports.html">Reports</a></li>
-                <li><a href="#" data-page="settings.html">Settings</a></li>
-            </ul>
-        </aside>
-        `;
+<aside class="sidebar">
+    <div class="logo">
+        <h2>HealthApp</h2>
+    </div>
+    <ul class="nav">
+        <li><a href="#" data-page="./component/medicine/medicine.html" class="active">Medicines</a></li>
+        <li><a href="#" data-page="patients.html">Patients</a></li>
+        <li><a href="#" data-page="appointments.html">Appointments</a></li>
+        <li><a href="#" data-page="reports.html">Reports</a></li>
+        <li><a href="#" data-page="settings.html">Settings</a></li>
+    </ul>
+</aside>
+`;
 
       // Function to load the sidebar
       function loadSidebar() {
         document.getElementById("sidebar-container").innerHTML = sidebarHTML;
-        loadContent("medicine.html"); // Load default content for Medicines
+        loadContent("./component/medicine/medicine.html"); // Load default content for Medicines
         addSidebarClickListeners(); // Add click listeners to sidebar links
       }
 
