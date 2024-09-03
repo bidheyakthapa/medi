@@ -3,22 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
     <title>Sign Up</title>
   </head>
   <body>
-    <h2>Sign Up</h2>
-    <form id="signupForm">
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" required />
-      <label for="signupUser">Username</label>
-      <input type="text" name="user" id="signupUser" required />
-      <label for="signupPassword">Password</label>
-      <input type="password" name="pass" id="signupPassword" required />
-      <label for="address">Address</label>
-      <input type="text" name="address" id="address" required />
-      <input type="submit" value="Sign Up" />
-    </form>
-    <a href="index.html">Already have an account? Sign In</a>
+    <div class="signup">
+
+      <div class="container">
+        <h2>Sign Up</h2> <br>
+        <form id="signupForm">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" required /> <br>
+          <label for="signupUser">Username</label>
+          <input type="text" name="user" id="signupUser" required /> <br>
+          <label for="signupPassword">Password</label>
+          <input type="password" name="pass" id="signupPassword" required /><br>
+          <label for="address">Address</label>
+          <input type="text" name="address" id="address" required /><br>
+          <input type="submit" value="Sign Up" class="signUp"/>
+        </form>
+        <a href="signin.html">Already have an account? Sign In</a>
+      </div>
+    </div>
 
     <script src="log.js"></script>
   </body>

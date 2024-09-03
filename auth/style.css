@@ -1,0 +1,80 @@
+/* style.css */
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    font-family: Arial, sans-serif;
+    background-color: #1565c0; /* Neutral background color */
+}
+
+.container {
+    width: 320px;
+    padding: 20px;
+    background-color: #fff; /* Main color theme */
+    color: black;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: color; /* White color for heading */
+    text-align: center;
+    font-weight: normal;
+    font-size: 40px;
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+    color: black; /* White color for labels */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff; /* White background for inputs */
+    color: #333; /* Dark text color */
+    box-sizing: border-box;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #777; /* Subtle placeholder text color */
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #0d47a1; /* Darker shade of blue for the button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+}
+
+input[type="submit"]:hover {
+    background-color: #003c8f; /* Even darker shade on hover */
+}
+
+a {
+    display: block;
+    margin-top: 10px;
+    color: black; /* Light blue for the link */
+    text-decoration: none;
+    text-align: center;
+}
+
+a:hover {
+    text-decoration: underline;
+}
