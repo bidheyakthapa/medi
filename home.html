@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../sidebar/styles.css" />
+  </head>
+  <body>
+    <div id="sidebar-container"></div>
+
+    <main>
+      <h1>Welcome to the Main Content Area</h1>
+      <p>This is where the main content of your application will go.</p>
+      <p>Add more content here as needed!</p>
+    </main>
+
+    <script>
+      // Sidebar HTML as a string
+      const sidebarHTML = `
+            <aside class="sidebar">
+                <div class="logo">
+                    <h2>HealthApp</h2>
+                </div>
+                <ul class="nav">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Patients</a></li>
+                    <li><a href="#">Appointments</a></li>
+                    <li><a href="#">Reports</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </aside>
+        `;
+
+      // Function to load the sidebar
+      function loadSidebar() {
+        document.getElementById("sidebar-container").innerHTML = sidebarHTML;
+      }
+
+      window.onload = loadSidebar;
+    </script>
+  </body>
+</html>
