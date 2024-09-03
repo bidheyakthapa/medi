@@ -11,7 +11,7 @@ body, html {
 
 .container {
     width: 320px;
-    padding: 20px;
+    padding: 10px 20px;
     background-color: #fff; /* Main color theme */
     color: black;
     border-radius: 8px;
@@ -20,7 +20,7 @@ body, html {
 }
 
 h2 {
-    margin-bottom: 20px;
+    margin: 15px 0;
     color: color; /* White color for heading */
     text-align: center;
     font-weight: normal;
@@ -70,11 +70,16 @@ input[type="submit"]:hover {
 a {
     display: block;
     margin-top: 10px;
-    color: black; /* Light blue for the link */
+    color: rgb(66, 66, 66); /* Light blue for the link */
     text-decoration: none;
     text-align: center;
+    padding: 10px 0;
 }
 
 a:hover {
     text-decoration: underline;
 }
+
+/* signin css */
+
+
