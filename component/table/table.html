@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Table</title>
+    <style>
+      body {
+        text-align: center;
+        margin: 0 230px;
+        padding: 20px;
+      }
+
+      #table-container {
+        display: inline-block;
+        margin: 0 auto;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      table {
+        border-collapse: collapse;
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Medicines Table</h1>
+      <div id="table-container"></div>
+    </div>
+
+    <script>
+      function fetchMedicines() {
+        fetch("table.json") // Ensure the path to table.json is correct
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            insertMedicinesTable(data);
+          })
+          .catch((error) => {
+            console.error("Error fetching the JSON file:", error);
+          });
+      }
+
+      function insertMedicinesTable(medicinesData) {
+        const tableHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Dosage</th>
+                            <th>Due</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${medicinesData
+                          .map(
+                            (medicine) => `
+                            <tr>
+                                <td>${medicine.Name}</td>
+                                <td>Rs.${medicine.Price}</td>
+                                <td>${medicine.Dosage}</td>
+                                <td>${medicine.Due}</td>
+                            </tr>
+                        `
+                          )
+                          .join("")}
+                    </tbody>
+                </table>
+            `;
+        document.getElementById("table-container").innerHTML = tableHTML;
+      }
+
+      // Fetch and display the data when the page loads
+      window.onload = fetchMedicines;
+    </script>
+  </body>
+</html>

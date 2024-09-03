@@ -1,0 +1,74 @@
+[
+  {
+    "Name": "Paracetamol",
+    "Dosage": "500mg",
+    "Image URL": "./component/medicine/images/paracetamol.jpg",
+    "Price (NPR)": 20
+  },
+  {
+    "Name": "Ibuprofen",
+    "Dosage": "200mg",
+    "Image URL": "./component/medicine/images/ibuprofen.jpg",
+    "Price (NPR)": 25
+  },
+  {
+    "Name": "Aspirin",
+    "Dosage": "325mg",
+    "Image URL": "./component/medicine/images/aspirin.jpg",
+    "Price (NPR)": 15
+  },
+  {
+    "Name": "Amoxicillin",
+    "Dosage": "500mg",
+    "Image URL": "./component/medicine/images/amoxicillin.jpg",
+    "Price (NPR)": 30
+  },
+  {
+    "Name": "Metformin",
+    "Dosage": "500mg",
+    "Image URL": "./component/medicine/images/metformin.jpg",
+    "Price (NPR)": 35
+  },
+  {
+    "Name": "Atorvastatin",
+    "Dosage": "10mg",
+    "Image URL": "./component/medicine/images/atorvastatin.jpg",
+    "Price (NPR)": 50
+  },
+  {
+    "Name": "Lisinopril",
+    "Dosage": "10mg",
+    "Image URL": "./component/medicine/images/lisinopril.jpg",
+    "Price (NPR)": 40
+  },
+  {
+    "Name": "Omeprazole",
+    "Dosage": "20mg",
+    "Image URL": "./component/medicine/images/omeprazole.jpg",
+    "Price (NPR)": 28
+  },
+  {
+    "Name": "Amlodipine",
+    "Dosage": "5mg",
+    "Image URL": "./component/medicine/images/amlodipine.jpg",
+    "Price (NPR)": 45
+  },
+  {
+    "Name": "Losartan",
+    "Dosage": "50mg",
+    "Image URL": "./component/medicine/images/losartan.jpg",
+    "Price (NPR)": 38
+  },
+  {
+    "Name": "Metoprolol",
+    "Dosage": "50mg",
+    "Image URL": "./component/medicine/images/metoprolol.jpg",
+    "Price (NPR)": 32
+  },
+  {
+    "Name": "Amoxicillin",
+    "Dosage": "450mg",
+    "Image URL": "./component/medicine/images/amoxicillin.jpg",
+    "Price (NPR)": 35
+  }
+]
