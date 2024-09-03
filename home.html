@@ -1,49 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="sidebar/styles.css" />
+  </head>
+  <body>
+    <div id="sidebar-container"></div>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="sidebar/styles.css">
-</head>
+    <main id="main-content"></main>
 
-<body>
-  <div id="sidebar-container"></div>
+    <script>
+      // script.js
 
-  <main>
-    <h1>Welcome to the Main Content Area</h1>
-    <p>This is where the main content of your application will go.</p>
-    <p>Add more content here as needed!</p>
-  </main>
+      // Sidebar HTML as a string with an active class for Medicines
+      const sidebarHTML = `
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>HealthApp</h2>
+            </div>
+            <ul class="nav">
+                <li><a href="#" data-page="./component/medicine.html" class="active">Medicines</a></li>
+                <li><a href="#" data-page="patients.html">Patients</a></li>
+                <li><a href="#" data-page="appointments.html">Appointments</a></li>
+                <li><a href="#" data-page="reports.html">Reports</a></li>
+                <li><a href="#" data-page="settings.html">Settings</a></li>
+            </ul>
+        </aside>
+        `;
 
-  <script>
-    // script.js
+      // Function to load the sidebar
+      function loadSidebar() {
+        document.getElementById("sidebar-container").innerHTML = sidebarHTML;
+        loadContent("medicine.html"); // Load default content for Medicines
+        addSidebarClickListeners(); // Add click listeners to sidebar links
+      }
 
-    // Sidebar HTML as a string
-    const sidebarHTML = `
-    <aside class="sidebar">
-        <div class="logo">
-            <h2>HealthApp</h2>
-        </div>
-        <ul class="nav">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Patients</a></li>
-            <li><a href="#">Appointments</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Settings</a></li>
-        </ul>
-    </aside>
-`;
+      // Function to load content from the specified HTML file
+      function loadContent(page) {
+        fetch(page)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.text();
+          })
+          .then((data) => {
+            document.getElementById("main-content").innerHTML = data;
+          })
+          .catch((error) => console.error("Error loading content:", error));
+      }
 
-    // Function to load the sidebar
-    function loadSidebar() {
-      document.getElementById("sidebar-container").innerHTML = sidebarHTML;
-    }
+      // Function to add click listeners to sidebar links
+      function addSidebarClickListeners() {
+        const links = document.querySelectorAll(".sidebar .nav a");
+        links.forEach((link) => {
+          link.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            setActiveLink(link);
+            const page = link.getAttribute("data-page");
+            loadContent(page); // Load the corresponding content
+          });
+        });
+      }
 
-    window.onload = loadSidebar;
+      // Function to set the active sidebar link
+      function setActiveLink(activeLink) {
+        const links = document.querySelectorAll(".sidebar .nav a");
+        links.forEach((link) => link.classList.remove("active")); // Remove active class from all links
+        activeLink.classList.add("active"); // Add active class to the clicked link
+      }
 
-  </script>
-</body>
-
+      window.onload = loadSidebar;
+    </script>
+  </body>
 </html>
